@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Search, Minus, Square, X } from 'lucide-react'
+import { Search } from 'lucide-react'
 
 export default function TitleBar() {
   const [searchQuery, setSearchQuery] = useState('')

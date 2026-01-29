@@ -7,11 +7,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && electron-builder",
-    "build:linux": "tsc && vite build && electron-builder --linux",
+    "build": "tsc -p tsconfig.electron.json && vite build && electron-builder",
+    "build:linux": "tsc -p tsconfig.electron.json && vite build && electron-builder --linux",
     "preview": "vite preview",
-    "electron:dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
-    "typecheck": "tsc --noEmit"
+    "electron:dev": "concurrently \"vite\" \"tsc -p tsconfig.electron.json -w\" \"wait-on http://localhost:5173 && electron .\"",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.electron.json --noEmit"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -51,7 +51,14 @@
     },
     "files": [
       "dist/**/*",
-      "assets/**/*"
+      "assets/**/*",
+      "catalog/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "catalog",
+        "to": "catalog"
+      }
     ]
   }
 }

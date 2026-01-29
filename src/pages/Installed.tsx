@@ -1,11 +1,10 @@
 import { useFlatpak } from '../hooks/useFlatpak'
-import { useCatalog } from '../hooks/useCatalog'
+// import { useCatalog } from '../hooks/useCatalog'
 import { Download, ExternalLink, Trash2, RefreshCw, Loader2 } from 'lucide-react'
 import { useState } from 'react'
 
 export default function Installed() {
   const { installedApps, refreshInstalled } = useFlatpak()
-  const { getApp } = useCatalog()
   const [refreshing, setRefreshing] = useState(false)
   const [uninstalling, setUninstalling] = useState<string | null>(null)
 
@@ -56,9 +55,7 @@ export default function Installed() {
       {/* List */}
       {installedApps.length > 0 ? (
         <div className="space-y-2">
-          {installedApps.map((app) => {
-            const catalogApp = getApp(app.id)
-            return (
+          {installedApps.map((app) => (
               <div
                 key={app.id}
                 className="flex items-center gap-4 p-4 bg-store-card rounded-xl"
@@ -101,8 +98,7 @@ export default function Installed() {
                   </button>
                 </div>
               </div>
-            )
-          })}
+          ))}
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center py-16 text-store-text-secondary">
