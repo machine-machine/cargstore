@@ -88,6 +88,11 @@ function registerIpcHandlers() {
       mainWindow?.webContents.send('flatpak:progress', { appId, progress })
     })
   })
+  ipcMain.handle('flatpak:install-bundle', async (_event, appId: string, bundleUrl: string) => {
+    return flatpak.installFromBundle(bundleUrl, (progress) => {
+      mainWindow?.webContents.send('flatpak:progress', { appId, progress })
+    })
+  })
   ipcMain.handle('flatpak:uninstall', (_event, appId: string) => flatpak.uninstall(appId))
   ipcMain.handle('flatpak:launch', (_event, appId: string) => flatpak.launch(appId))
   ipcMain.handle('flatpak:check-updates', () => flatpak.checkUpdates())

@@ -8,7 +8,8 @@ interface CatalogApp {
   category: string
   icon: string
   featured: boolean
-  flatpakRef: string
+  flatpakRef?: string
+  bundleUrl?: string
   keywords: string[]
 }
 
@@ -177,6 +178,7 @@ const defaultCatalog: Catalog = {
     { id: 'creative', name: 'Creative', icon: 'palette' },
     { id: 'office', name: 'Office', icon: 'file-text' },
     { id: 'ai-ml', name: 'AI & ML', icon: 'brain' },
+    { id: 'agents', name: 'AI Agents', icon: 'bot' },
     { id: 'browsers', name: 'Browsers', icon: 'globe' },
     { id: 'utilities', name: 'Utilities', icon: 'wrench' },
   ],

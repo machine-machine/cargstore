@@ -120,6 +120,17 @@
       "featured": true,
       "flatpakRef": "flathub:app/io.github.AimBetter.AimBetter/x86_64/stable",
       "keywords": ["ai", "llm", "chat", "ollama", "openai", "gpt"]
+    },
+    {
+      "id": "io.github.andymik90.AutoClaude",
+      "name": "Auto-Claude",
+      "summary": "Autonomous multi-agent coding framework",
+      "description": "Auto-Claude is an autonomous multi-agent coding framework that plans, builds, and validates software for you. It features a Kanban-style interface for managing AI coding tasks across multiple sessions.",
+      "category": "agents",
+      "icon": "auto-claude.png",
+      "featured": true,
+      "bundleUrl": "https://github.com/AndyMik90/Auto-Claude/releases/download/v2.7.5/Auto-Claude-2.7.5-linux-x86_64.flatpak",
+      "keywords": ["ai", "agent", "coding", "autonomous", "claude", "multi-agent", "automation"]
     }
   ],
   "categories": [
@@ -127,6 +138,7 @@
     { "id": "creative", "name": "Creative", "icon": "palette" },
     { "id": "office", "name": "Office", "icon": "file-text" },
     { "id": "ai-ml", "name": "AI & ML", "icon": "brain" },
+    { "id": "agents", "name": "AI Agents", "icon": "bot" },
     { "id": "browsers", "name": "Browsers", "icon": "globe" },
     { "id": "utilities", "name": "Utilities", "icon": "wrench" }
   ]

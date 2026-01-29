@@ -33,7 +33,7 @@ export default function AppDetail() {
 
   const handleInstall = async () => {
     try {
-      await install()
+      await install(app.bundleUrl)
     } catch (error) {
       console.error('Install failed:', error)
     }

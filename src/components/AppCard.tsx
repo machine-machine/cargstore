@@ -10,6 +10,7 @@ interface AppCardProps {
     summary: string
     icon: string
     category: string
+    bundleUrl?: string
   }
 }
 
@@ -24,7 +25,7 @@ export default function AppCard({ app }: AppCardProps) {
     if (isInstalled) {
       await launch()
     } else {
-      await install()
+      await install(app.bundleUrl)
     }
   }
 

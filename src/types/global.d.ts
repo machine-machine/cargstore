@@ -16,6 +16,7 @@ interface CargstoreAPI {
   flatpak: {
     listInstalled: () => Promise<InstalledApp[]>
     install: (appId: string) => Promise<void>
+    installBundle: (appId: string, bundleUrl: string) => Promise<void>
     uninstall: (appId: string) => Promise<void>
     launch: (appId: string) => Promise<void>
     checkUpdates: () => Promise<AppUpdate[]>
@@ -41,7 +42,8 @@ interface CatalogApp {
   category: string
   icon: string
   featured: boolean
-  flatpakRef: string
+  flatpakRef?: string
+  bundleUrl?: string
   keywords: string[]
 }
 

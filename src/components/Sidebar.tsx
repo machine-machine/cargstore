@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { Compass, Download, RefreshCw, Code, Palette, FileText, Brain, Globe, Wrench } from 'lucide-react'
+import { Compass, Download, RefreshCw, Code, Palette, FileText, Brain, Bot, Globe, Wrench } from 'lucide-react'
 
 interface SidebarProps {
   updateCount: number
@@ -10,6 +10,7 @@ const categories = [
   { id: 'creative', name: 'Creative', icon: Palette },
   { id: 'office', name: 'Office', icon: FileText },
   { id: 'ai-ml', name: 'AI & ML', icon: Brain },
+  { id: 'agents', name: 'AI Agents', icon: Bot },
   { id: 'browsers', name: 'Browsers', icon: Globe },
   { id: 'utilities', name: 'Utilities', icon: Wrench },
 ]

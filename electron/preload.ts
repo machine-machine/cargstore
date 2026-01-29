@@ -13,6 +13,7 @@ contextBridge.exposeInMainWorld('cargstore', {
   flatpak: {
     listInstalled: () => ipcRenderer.invoke('flatpak:list-installed'),
     install: (appId: string) => ipcRenderer.invoke('flatpak:install', appId),
+    installBundle: (appId: string, bundleUrl: string) => ipcRenderer.invoke('flatpak:install-bundle', appId, bundleUrl),
     uninstall: (appId: string) => ipcRenderer.invoke('flatpak:uninstall', appId),
     launch: (appId: string) => ipcRenderer.invoke('flatpak:launch', appId),
     checkUpdates: () => ipcRenderer.invoke('flatpak:check-updates'),
@@ -40,6 +41,7 @@ declare global {
       flatpak: {
         listInstalled: () => Promise<InstalledApp[]>
         install: (appId: string) => Promise<void>
+        installBundle: (appId: string, bundleUrl: string) => Promise<void>
         uninstall: (appId: string) => Promise<void>
         launch: (appId: string) => Promise<void>
         checkUpdates: () => Promise<AppUpdate[]>
@@ -79,7 +81,8 @@ interface CatalogApp {
   category: string
   icon: string
   featured: boolean
-  flatpakRef: string
+  flatpakRef?: string
+  bundleUrl?: string
   keywords: string[]
 }
 

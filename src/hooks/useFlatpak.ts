@@ -57,13 +57,17 @@ export function useFlatpak(appId?: string) {
     ? installedApps.some((app) => app.id === appId)
     : false
 
-  const install = useCallback(async () => {
+  const install = useCallback(async (bundleUrl?: string) => {
     if (!appId) return
 
     setInstalling(true)
     setProgress(0)
     try {
-      await window.cargstore?.flatpak.install(appId)
+      if (bundleUrl) {
+        await window.cargstore?.flatpak.installBundle(appId, bundleUrl)
+      } else {
+        await window.cargstore?.flatpak.install(appId)
+      }
       await refreshInstalled()
     } catch (error) {
       console.error('Install failed:', error)

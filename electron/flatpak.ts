@@ -1,5 +1,9 @@
 import { spawn, exec } from 'child_process'
 import { promisify } from 'util'
+import * as fs from 'fs'
+import * as path from 'path'
+import * as https from 'https'
+import * as http from 'http'
 
 const execAsync = promisify(exec)
 
@@ -100,6 +104,118 @@ export class FlatpakManager {
       })
 
       process.on('error', reject)
+    })
+  }
+
+  async installFromBundle(bundleUrl: string, onProgress?: (progress: number) => void): Promise<void> {
+    const tempDir = '/tmp/cargstore-downloads'
+    const fileName = path.basename(new URL(bundleUrl).pathname)
+    const filePath = path.join(tempDir, fileName)
+
+    // Ensure temp directory exists
+    if (!fs.existsSync(tempDir)) {
+      fs.mkdirSync(tempDir, { recursive: true })
+    }
+
+    // Download the bundle with progress
+    await this.downloadFile(bundleUrl, filePath, (downloadProgress) => {
+      // Download is 0-50%, install is 50-100%
+      onProgress?.(Math.floor(downloadProgress * 0.5))
+    })
+
+    // Install the bundle
+    return new Promise((resolve, reject) => {
+      const process = spawn('flatpak', ['install', '--user', '-y', '--bundle', filePath], {
+        env: this.flatpakEnv,
+      })
+
+      let lastProgress = 50
+
+      process.stdout.on('data', (data: Buffer) => {
+        const output = data.toString()
+        const match = output.match(/(\d+)%/)
+        if (match && onProgress) {
+          const progress = 50 + Math.floor(parseInt(match[1], 10) * 0.5)
+          if (progress > lastProgress) {
+            lastProgress = progress
+            onProgress(progress)
+          }
+        }
+      })
+
+      process.stderr.on('data', (data: Buffer) => {
+        console.error('Flatpak bundle stderr:', data.toString())
+      })
+
+      process.on('close', (code) => {
+        // Clean up downloaded file
+        try {
+          fs.unlinkSync(filePath)
+        } catch {
+          // Ignore cleanup errors
+        }
+
+        if (code === 0) {
+          onProgress?.(100)
+          resolve()
+        } else {
+          reject(new Error(`Flatpak bundle install failed with code ${code}`))
+        }
+      })
+
+      process.on('error', reject)
+    })
+  }
+
+  private downloadFile(url: string, dest: string, onProgress?: (progress: number) => void): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const file = fs.createWriteStream(dest)
+      const protocol = url.startsWith('https') ? https : http
+
+      const request = protocol.get(url, (response) => {
+        // Handle redirects
+        if (response.statusCode === 301 || response.statusCode === 302) {
+          const redirectUrl = response.headers.location
+          if (redirectUrl) {
+            file.close()
+            fs.unlinkSync(dest)
+            this.downloadFile(redirectUrl, dest, onProgress).then(resolve).catch(reject)
+            return
+          }
+        }
+
+        if (response.statusCode !== 200) {
+          reject(new Error(`Download failed with status ${response.statusCode}`))
+          return
+        }
+
+        const totalSize = parseInt(response.headers['content-length'] || '0', 10)
+        let downloadedSize = 0
+
+        response.on('data', (chunk: Buffer) => {
+          downloadedSize += chunk.length
+          if (totalSize > 0 && onProgress) {
+            onProgress(Math.floor((downloadedSize / totalSize) * 100))
+          }
+        })
+
+        response.pipe(file)
+
+        file.on('finish', () => {
+          file.close()
+          resolve()
+        })
+      })
+
+      request.on('error', (err) => {
+        fs.unlink(dest, () => {})
+        reject(err)
+      })
+
+      file.on('error', (err) => {
+        fs.unlink(dest, () => {})
+        reject(err)
+      })
     })
   }
 
