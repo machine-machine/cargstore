@@ -32,6 +32,9 @@ interface CargstoreAPI {
     maximize: () => void
     close: () => void
   }
+  app: {
+    getVersion: () => Promise<string>
+  }
 }
 
 interface CatalogApp {

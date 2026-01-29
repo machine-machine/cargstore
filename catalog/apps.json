@@ -122,7 +122,7 @@
       "keywords": ["ai", "llm", "chat", "ollama", "openai", "gpt"]
     },
     {
-      "id": "io.github.andymik90.AutoClaude",
+      "id": "com.autoclaude.ui",
       "name": "Auto-Claude",
       "summary": "Autonomous multi-agent coding framework",
       "description": "Auto-Claude is an autonomous multi-agent coding framework that plans, builds, and validates software for you. It features a Kanban-style interface for managing AI coding tasks across multiple sessions.",

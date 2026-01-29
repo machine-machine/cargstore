@@ -105,4 +105,7 @@ function registerIpcHandlers() {
       : path.join(process.resourcesPath, 'catalog/apps.json')
     return require(catalogPath)
   })
+
+  // App info
+  ipcMain.handle('app:get-version', () => app.getVersion())
 }

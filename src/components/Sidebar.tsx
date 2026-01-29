@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { Compass, Download, RefreshCw, Code, Palette, FileText, Brain, Bot, Globe, Wrench } from 'lucide-react'
+import { useState, useEffect } from 'react'
 
 interface SidebarProps {
   updateCount: number
@@ -16,6 +17,12 @@ const categories = [
 ]
 
 export default function Sidebar({ updateCount }: SidebarProps) {
+  const [version, setVersion] = useState<string>('')
+
+  useEffect(() => {
+    window.cargstore?.app.getVersion().then(setVersion).catch(() => setVersion('dev'))
+  }, [])
+
   return (
     <aside className="w-48 bg-store-sidebar border-r border-gray-700 flex flex-col">
       {/* Main navigation */}

@@ -27,6 +27,11 @@ contextBridge.exposeInMainWorld('cargstore', {
   catalog: {
     get: () => ipcRenderer.invoke('catalog:get'),
   },
+
+  // App info
+  app: {
+    getVersion: () => ipcRenderer.invoke('app:get-version'),
+  },
 })
 
 // Type definitions for the exposed API
@@ -50,6 +55,9 @@ declare global {
       }
       catalog: {
         get: () => Promise<Catalog>
+      }
+      app: {
+        getVersion: () => Promise<string>
       }
     }
   }

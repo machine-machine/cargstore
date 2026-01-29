@@ -26,7 +26,8 @@ export class FlatpakManager {
 
   constructor() {
     // Use persistent volume for Flatpak installation
-    this.installationPath = process.env.FLATPAK_USER_DIR || '/clawdbot_home/apps/flatpak'
+    // Default matches clawdbot-desktop entrypoint.sh setup
+    this.installationPath = process.env.FLATPAK_USER_DIR || '/clawdbot_home/flatpak'
   }
 
   private get flatpakEnv() {
@@ -224,8 +225,13 @@ export class FlatpakManager {
   }
 
   async launch(appId: string): Promise<void> {
-    spawn('flatpak', ['run', appId], {
-      env: this.flatpakEnv,
+    // Use --die-with-parent so app closes when Cargstore closes
+    // Note: Some environments (like Docker) may need additional sandbox workarounds
+    spawn('flatpak', ['run', '--user', appId], {
+      env: {
+        ...this.flatpakEnv,
+        DISPLAY: process.env.DISPLAY || ':0',
+      },
       detached: true,
       stdio: 'ignore',
     }).unref()
