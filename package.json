@@ -1,0 +1,57 @@
+{
+  "name": "cargstore",
+  "version": "0.1.0",
+  "description": "App Store for Clawdbot Desktop - Install and manage applications with Flatpak",
+  "main": "dist/electron/main.js",
+  "author": "Machine Machine",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && electron-builder",
+    "build:linux": "tsc && vite build && electron-builder --linux",
+    "preview": "vite preview",
+    "electron:dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0",
+    "lucide-react": "^0.344.0",
+    "better-sqlite3": "^9.4.3",
+    "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.9",
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/ws": "^8.5.10",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "concurrently": "^8.2.2",
+    "electron": "^29.0.0",
+    "electron-builder": "^24.13.3",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.0",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "ai.machinemachine.cargstore",
+    "productName": "Cargstore",
+    "directories": {
+      "output": "release"
+    },
+    "linux": {
+      "target": ["AppImage", "tar.gz"],
+      "category": "System",
+      "icon": "assets/icon.png"
+    },
+    "files": [
+      "dist/**/*",
+      "assets/**/*"
+    ]
+  }
+}

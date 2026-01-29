@@ -1,0 +1,133 @@
+{
+  "apps": [
+    {
+      "id": "com.visualstudio.code",
+      "name": "Visual Studio Code",
+      "summary": "Code editor by Microsoft",
+      "description": "Visual Studio Code is a lightweight but powerful source code editor which runs on your desktop and is available for Windows, macOS and Linux. It comes with built-in support for JavaScript, TypeScript and Node.js and has a rich ecosystem of extensions for other languages and runtimes.",
+      "category": "development",
+      "icon": "vscode.png",
+      "featured": true,
+      "flatpakRef": "flathub:app/com.visualstudio.code/x86_64/stable",
+      "keywords": ["code", "editor", "vscode", "ide", "programming", "microsoft"]
+    },
+    {
+      "id": "md.obsidian.Obsidian",
+      "name": "Obsidian",
+      "summary": "Knowledge base and note-taking",
+      "description": "Obsidian is a powerful knowledge base that works on top of a local folder of plain text Markdown files. It features bidirectional linking, graph view, and a plugin ecosystem.",
+      "category": "office",
+      "icon": "obsidian.png",
+      "featured": true,
+      "flatpakRef": "flathub:app/md.obsidian.Obsidian/x86_64/stable",
+      "keywords": ["notes", "markdown", "knowledge", "writing", "zettelkasten"]
+    },
+    {
+      "id": "com.slack.Slack",
+      "name": "Slack",
+      "summary": "Team communication platform",
+      "description": "Slack is a messaging app for business that connects people to the information they need. By bringing people together to work as one unified team, Slack transforms the way organizations communicate.",
+      "category": "office",
+      "icon": "slack.png",
+      "featured": true,
+      "flatpakRef": "flathub:app/com.slack.Slack/x86_64/stable",
+      "keywords": ["chat", "messaging", "team", "communication", "work"]
+    },
+    {
+      "id": "org.gimp.GIMP",
+      "name": "GIMP",
+      "summary": "Image editor",
+      "description": "GIMP is a cross-platform image editor available for GNU/Linux, macOS, Windows and more operating systems. It is free software, you can change its source code and distribute your changes.",
+      "category": "creative",
+      "icon": "gimp.png",
+      "featured": false,
+      "flatpakRef": "flathub:app/org.gimp.GIMP/x86_64/stable",
+      "keywords": ["image", "photo", "editor", "graphics", "design"]
+    },
+    {
+      "id": "org.inkscape.Inkscape",
+      "name": "Inkscape",
+      "summary": "Vector graphics editor",
+      "description": "Inkscape is a Free and open source vector graphics editor for GNU/Linux, Windows and macOS. It offers a rich set of features and is widely used for both artistic and technical illustrations.",
+      "category": "creative",
+      "icon": "inkscape.png",
+      "featured": false,
+      "flatpakRef": "flathub:app/org.inkscape.Inkscape/x86_64/stable",
+      "keywords": ["vector", "svg", "graphics", "design", "illustration"]
+    },
+    {
+      "id": "org.mozilla.firefox",
+      "name": "Firefox",
+      "summary": "Web browser by Mozilla",
+      "description": "Firefox is a free and open-source web browser developed by the Mozilla Foundation. It uses the Gecko rendering engine to display web pages, which implements current and anticipated web standards.",
+      "category": "browsers",
+      "icon": "firefox.png",
+      "featured": false,
+      "flatpakRef": "flathub:app/org.mozilla.firefox/x86_64/stable",
+      "keywords": ["browser", "web", "internet", "mozilla"]
+    },
+    {
+      "id": "org.chromium.Chromium",
+      "name": "Chromium",
+      "summary": "Open-source web browser",
+      "description": "Chromium is an open-source browser project that aims to build a safer, faster, and more stable way for all users to experience the web.",
+      "category": "browsers",
+      "icon": "chromium.png",
+      "featured": false,
+      "flatpakRef": "flathub:app/org.chromium.Chromium/x86_64/stable",
+      "keywords": ["browser", "web", "internet", "chrome"]
+    },
+    {
+      "id": "org.libreoffice.LibreOffice",
+      "name": "LibreOffice",
+      "summary": "Office productivity suite",
+      "description": "LibreOffice is a free and powerful office suite, and a successor to OpenOffice.org. Its clean interface and feature-rich tools help you unleash your creativity and enhance your productivity.",
+      "category": "office",
+      "icon": "libreoffice.png",
+      "featured": true,
+      "flatpakRef": "flathub:app/org.libreoffice.LibreOffice/x86_64/stable",
+      "keywords": ["office", "word", "excel", "spreadsheet", "document", "presentation"]
+    },
+    {
+      "id": "org.videolan.VLC",
+      "name": "VLC",
+      "summary": "Media player",
+      "description": "VLC is a free and open source cross-platform multimedia player and framework that plays most multimedia files as well as DVDs, Audio CDs, VCDs, and various streaming protocols.",
+      "category": "utilities",
+      "icon": "vlc.png",
+      "featured": false,
+      "flatpakRef": "flathub:app/org.videolan.VLC/x86_64/stable",
+      "keywords": ["video", "audio", "media", "player", "streaming"]
+    },
+    {
+      "id": "com.discordapp.Discord",
+      "name": "Discord",
+      "summary": "Voice, video & text chat",
+      "description": "Discord is your place to talk and hang out. Where you can belong to a school club, a gaming group, or a worldwide art community. Where just you and a few friends can spend time together.",
+      "category": "office",
+      "icon": "discord.png",
+      "featured": false,
+      "flatpakRef": "flathub:app/com.discordapp.Discord/x86_64/stable",
+      "keywords": ["chat", "voice", "gaming", "community", "communication"]
+    },
+    {
+      "id": "io.github.AimBetter.AimBetter",
+      "name": "Open WebUI",
+      "summary": "Chat with AI models locally",
+      "description": "Open WebUI is a user-friendly interface for interacting with large language models. It supports Ollama, OpenAI, and other backends.",
+      "category": "ai-ml",
+      "icon": "openwebui.png",
+      "featured": true,
+      "flatpakRef": "flathub:app/io.github.AimBetter.AimBetter/x86_64/stable",
+      "keywords": ["ai", "llm", "chat", "ollama", "openai", "gpt"]
+    }
+  ],
+  "categories": [
+    { "id": "development", "name": "Development", "icon": "code" },
+    { "id": "creative", "name": "Creative", "icon": "palette" },
+    { "id": "office", "name": "Office", "icon": "file-text" },
+    { "id": "ai-ml", "name": "AI & ML", "icon": "brain" },
+    { "id": "browsers", "name": "Browsers", "icon": "globe" },
+    { "id": "utilities", "name": "Utilities", "icon": "wrench" }
+  ]
+}
