@@ -1,6 +1,6 @@
 {
   "name": "cargstore",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "App Store for Clawdbot Desktop - Install and manage applications with Flatpak",
   "main": "dist/electron/main.js",
   "author": "Machine Machine",
@@ -50,8 +50,22 @@
         "tar.gz"
       ],
       "category": "System",
-      "icon": "assets/icon.png"
+      "icon": "assets/icon.png",
+      "mimeTypes": [
+        "x-scheme-handler/flatpak"
+      ],
+      "desktop": {
+        "MimeType": "x-scheme-handler/flatpak"
+      }
     },
+    "protocols": [
+      {
+        "name": "Flatpak Install",
+        "schemes": [
+          "flatpak"
+        ]
+      }
+    ],
     "files": [
       "dist/**/*",
       "assets/**/*",
