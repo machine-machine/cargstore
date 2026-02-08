@@ -75,6 +75,10 @@
       {
         "from": "catalog",
         "to": "catalog"
+      },
+      {
+        "from": "assets/icon.png",
+        "to": "icon.png"
       }
     ]
   }

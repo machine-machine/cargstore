@@ -31,6 +31,8 @@ contextBridge.exposeInMainWorld('cargstore', {
   // App info
   app: {
     getVersion: () => ipcRenderer.invoke('app:get-version'),
+    checkSelfUpdate: () => ipcRenderer.invoke('app:check-self-update'),
+    selfUpdate: (tarballUrl: string) => ipcRenderer.invoke('app:self-update', tarballUrl),
   },
 })
 
@@ -58,6 +60,8 @@ declare global {
       }
       app: {
         getVersion: () => Promise<string>
+        checkSelfUpdate: () => Promise<SelfUpdateResult>
+        selfUpdate: (tarballUrl: string) => Promise<void>
       }
     }
   }
@@ -98,4 +102,13 @@ interface Category {
   id: string
   name: string
   icon: string
+}
+
+interface SelfUpdateResult {
+  available: boolean
+  currentVersion: string
+  latestVersion?: string
+  releaseUrl?: string
+  tarballUrl?: string
+  error?: string
 }
