@@ -122,6 +122,17 @@
       "keywords": ["ai", "llm", "chat", "ollama", "openai", "gpt"]
     },
     {
+      "id": "dev.zed.Zed",
+      "name": "Zed",
+      "summary": "High-performance code editor",
+      "description": "Zed is a high-performance, multiplayer code editor built in Rust. It features GPU-accelerated rendering, built-in AI assistance, real-time collaboration, and a minimal interface designed for speed.",
+      "category": "development",
+      "icon": "zed.png",
+      "featured": false,
+      "flatpakRef": "flathub:app/dev.zed.Zed/x86_64/stable",
+      "keywords": ["code", "editor", "ide", "rust", "collaboration", "ai", "programming"]
+    },
+    {
       "id": "com.autoclaude.ui",
       "name": "Auto-Claude",
       "summary": "Autonomous multi-agent coding framework",
